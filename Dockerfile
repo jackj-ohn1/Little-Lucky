@@ -6,8 +6,8 @@ WORKDIR /app
 
 ADD . /app
 
-RUN go mod download && go build -o main ./main.go
-
 EXPOSE 8080
 
-CMD /app/main
+RUN export GOPROXY=https://goproxy.cn && go mod tidy && go build -o main ./main.go
+
+CMD ./main
